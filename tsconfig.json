@@ -17,6 +17,17 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "flare": [
+        "deps/flare"
+      ],
+      "ngx-flare": [
+        "dist/ngx-flare"
+      ],
+      "ngx-flare/*": [
+        "dist/ngx-flare/*"
+      ]
+    }
   }
 }
