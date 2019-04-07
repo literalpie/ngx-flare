@@ -34,6 +34,6 @@ in a component:
 > I played with making an `playPositionChange` output to allow for two-way binding, but that caused performance issues
 
 ## FlarePlayer
-This project also includes a class that conforms to the `AnimationPlayer` interface used within Angular.
+This project also includes a class that conforms to the [AnimationPlayer](https://angular.io/api/animations/AnimationPlayer) interface used within Angular.
 This is great for if you want even more control over the animation.
 I could outline it here, but if you're planning on going that deep, I trust you to look at the code and figure it out yourself.
