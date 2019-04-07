@@ -1,27 +1,39 @@
 # NgxFlare
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
+A simple project that simplifies the usage of [Flare](https://www.2dimensions.com/about-flare) in Angular applications.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Flare JS
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This project uses [Flare JS](https://github.com/2d-inc/Flare-JS).
+Unfortunately, that project isn't available on npm ([yet](https://github.com/2d-inc/Flare-JS/pull/17#issuecomment-478138690)).
+I opted to go with the quick-and-dirty approach of including a minified build of flarejs in a deps folder.
 
-## Build
+## Typescript
+Flare JS does not use typescript or include declarations for typescript.
+Some declaration files are included in this project, but they are very rough and shouldn't be trusted.
+When Flare JS gets released to npm, I'll use [dts-gen](https://github.com/Microsoft/dts-gen) to do this better.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Component Usage
+in your module:
+`imports: [NgxFlareModule]`
+in a component:
+`<ngx-flare source="assets/Cat.flr" [playPosition]="playPosition" [playing]="true" animation="happy"  style="height: 100%; width: 100%;"></ngx-flare>`
 
-## Running unit tests
+### Inputs
+`source` - A string that points to the `flr` file with the animation
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+`playing` - Used to play or pause the animation
 
-## Running end-to-end tests
+`animation` - The name of the animation in the `flr` file. If left blank, the first animation will be used.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+`playPosition` - The position of the animation in seconds. This can be used to set the position to anything you want.
+> I played with making an `playPositionChange` output to allow for two-way binding, but that caused performance issues
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## FlarePlayer
+This project also includes a class that conforms to the `AnimationPlayer` interface used within Angular.
+This is great for if you want even more control over the animation.
+I could outline it here, but if you're planning on going that deep, I trust you to look at the code and figure it out yourself.
