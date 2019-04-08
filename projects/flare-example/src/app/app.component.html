@@ -1,3 +1,8 @@
 <input type="text" [(ngModel)]="playPosition">
-<ngx-flare source="assets/Cat.flr" [playPosition]="playPosition" [playing]="playing" animation="happy"  style="height: 100%; width: 100%;"></ngx-flare>
+<div style="width: 600px; height: 600px;">
+  <ngx-flare source="assets/Cat.flr" [playPosition]="playPosition" [playing]="playing" [animation]="animation"  style="height: 100%; width: 100%;"></ngx-flare>
+</div>
 <button (click)="playing = !playing">play</button>
+<button (click)="animation = 'happy-to-sad'">Happy to sad</button>
+<button (click)="animation = 'sad-to-happy'">Sad to happy</button>
+<button (click)="animation = 'happy'">happy</button>

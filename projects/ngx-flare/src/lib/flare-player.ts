@@ -21,6 +21,7 @@ export class FlarePlayer implements AnimationPlayer {
   private animationPath: string;
   private animationName: string;
   private position?: number = undefined;
+  private animationDuration = 0;
   playing = false;
 
   private onDoneFn = () => {};
@@ -93,6 +94,7 @@ export class FlarePlayer implements AnimationPlayer {
   reset(): void {
     this.position = undefined;
     this.lastAdvanceTime = undefined;
+    this.playing = false;
   }
   setPosition(position: number): void {
     const starting = this.position === undefined;
@@ -161,7 +163,7 @@ export class FlarePlayer implements AnimationPlayer {
 
     this.draw(this.graphics);
     /** Schedule a new frame. */
-    if (this.playing) {
+    if (this.playing && (!this.animation || this.position < this.animation.duration || this.animation.loop)) {
       this.lastAdvanceTime = this.lastAdvanceTime || Date.now();
       this.scheduleAdvance();
     }
@@ -237,13 +239,12 @@ export class FlarePlayer implements AnimationPlayer {
       if (actorInstance._Animations.length) {
         this.animation = undefined;
         /** Instantiate the Animation. */
-        console.log(actorInstance._Animations, this.animationName);
-        if (!this.animationName) {
+        if (this.animationName) {
           this.animation = actorInstance._Animations.find((animation) => animation._Name === this.animationName);
         } else {
           this.animation = actorInstance._Animations[0];
         }
-        console.log(this.animation);
+        this.animationDuration = (this.animation && this.animation.duration || 0);
         if (!this.animation) {
           console.error('ERROR: Animation not found');
           return;

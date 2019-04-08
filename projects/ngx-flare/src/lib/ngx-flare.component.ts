@@ -38,6 +38,9 @@ export class NgxFlareComponent implements OnChanges, AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.source || changes.animation) {
+      if (this.example) {
+        this.example.reset();
+      }
       this.initializePlayer();
     }
     if (changes.playing) {
@@ -48,7 +51,6 @@ export class NgxFlareComponent implements OnChanges, AfterViewInit {
   initializePlayer() {
     this.example = new FlarePlayer(this.canvas.nativeElement, this.source, this.animation);
     this.example.init();
-    this.example.onStart(() => console.log('loaded'));
     this.example.setPosition(this.playPosition);
     if (this.playing) {
       this.example.play();

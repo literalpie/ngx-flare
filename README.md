@@ -2,6 +2,8 @@
 
 A simple project that simplifies the usage of [Flare](https://www.2dimensions.com/about-flare) in Angular applications.
 
+View a demo [here](https://ngx-flare.firebaseapp.com)!
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

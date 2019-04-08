@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'flare-example';
   playPosition = 0;
-  playing = false;
+  playing = true;
+  animation = 'happy';
 }
